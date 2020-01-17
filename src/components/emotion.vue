@@ -76,14 +76,13 @@ export default {
         sendContent(str){
 
             var self = this
-            self.inputVaule = ''
+            self.inputVaule = '';
             self.$nextTick(function(){
                 var list = str.match(/\[[\u4e00-\u9fa5]*\w*\]/g);
                 // console.log(list)
                 var filter = /[\[\]]/g;
                 var title;
                 console.log(self.biaqingArray)
-     
 
                 list.map((item1,index1)=>{
                     title = item1.replace(filter,'');
@@ -102,11 +101,8 @@ export default {
             
 
             
-        },
-        dealTitleToImg(str){
-            
-            
         }
+
     }
 }
 </script>

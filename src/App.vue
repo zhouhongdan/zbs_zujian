@@ -72,15 +72,15 @@ export default {
       classInfo:[
         {
           teacher:'老师1',
-          time:'10:00-10:30'
+          time:'16:00-16:30'
         },
         {
           teacher:'休息',
-          time:'10:30-10:45'
+          time:'16:30-16:45'
         },
         {
           teacher:'老师2',
-          time:'10:45-10:59'
+          time:'16:45-16:59'
         }
       ],
       isNotAsyn1:false,
