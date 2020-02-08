@@ -11,9 +11,7 @@
       </ul>
       <ol class="swiperCpOl" ref="klkl" v-if="bannersInfo.length > 1">
         <li v-for="(yuan,index) in bannersInfo" :key="index" :class="[indexNum ==  index?'curentyuan':'']" @click="stopRunning(index)"></li>
-      </ol>
-      
-      
+      </ol>      
   </div>
 </template>
 
@@ -37,9 +35,7 @@ export default {
   mounted:function(){
       // eslint-disable-next-line no-console
       console.log(this.bannersInfo)
-      this.goRunning()
-
-     
+      this.goRunning()     
   },
   methods:{
     stopRunning(index){
@@ -58,25 +54,19 @@ export default {
           }
         },1000)
       }
-
-
     }
-    
-
   }
-
-
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
-.swiperCpUl{width:400px;height: 200px;border:1px solid pink;display: flex;}
+.swiperCp{position: relative;left:0;top:0;z-index:0;width:100%;height: 100%;}
+.swiperCpUl{width:100%;height: 100%;box-sizing: border-box;border:1px solid pink;display: flex;flex-flow: row nowrap;}
 .swiperCpUl>li{width:100%;height: 100%;}
 
-.swiperCpOl{width:400px;height: 20px;overflow: hidden;display:flex;flex-flow: row nowrap;justify-content: center;align-items: center;}
-.swiperCpOl>li{width:16px;height: 16px;background:red;border-radius:50%;opacity: 0.2;margin-right: 10px;}
+.swiperCpOl{position: absolute;left:0;bottom:0;z-index:100;width:100%;height: 20px;overflow: hidden;display:flex;flex-flow: row nowrap;justify-content: center;align-items: center;}
+.swiperCpOl>li{width:14px;height: 14px;background:red;border-radius:50%;opacity: 0.2;margin-right: 10px;}
 .swiperCpOl .curentyuan{opacity: 1;}
 
 

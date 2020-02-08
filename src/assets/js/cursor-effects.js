@@ -89,8 +89,8 @@ export default  class CursorSpecialEffects {
     this.computerContext = this.computerCanvas.getContext('2d')
     this.renderContext = this.renderCanvas.getContext('2d')
 
-    this.globalWidth = window.innerWidth
-    this.globalHeight = window.innerHeight
+    this.globalWidth = document.body.clientWidth
+    this.globalHeight = document.body.clientHeight
 
     this.booms = []
     this.running = false
@@ -105,6 +105,7 @@ export default  class CursorSpecialEffects {
         height: this.globalHeight
       }
     })
+
     boom.init()
     this.booms.push(boom)
     this.running || this.run()
@@ -113,6 +114,7 @@ export default  class CursorSpecialEffects {
   handlePageHide() {
     this.booms = []
     this.running = false
+
   }
 
   init() {
@@ -123,8 +125,8 @@ export default  class CursorSpecialEffects {
     style.pointerEvents = 'none'
 
     
-    style.width = this.renderCanvas.width = this.computerCanvas.width = this.globalWidth  
-    style.height = this.renderCanvas.height = this.computerCanvas.height = this.globalHeight  
+    style.width = this.renderCanvas.width = this.computerCanvas.width = this.globalWidth 
+    style.height = this.renderCanvas.height = this.computerCanvas.height = this.globalHeight 
 
     document.body.append(this.renderCanvas)
 
