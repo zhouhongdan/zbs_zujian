@@ -8,6 +8,8 @@
         <title-btn @click="tTecherShow" :icon="icon1" :iconText="icon1Text"></title-btn>
         <!-- 课程表 -->
         <title-btn @click="tClassShow" :icon="icon1" :iconText="icon2Text"></title-btn>
+        <!-- 抽奖 -->
+        <title-btn @click="choujiang" :icon="icon1" :iconText="icon3Text"></title-btn>
       </div>
       <div class="mainCon">
         <div class="mianLive">
@@ -78,6 +80,8 @@
   import kechengbiao from './components/kechengbiao'
   // 老师介绍
   import teachers from './components/teachers'
+  // 九宫格
+  import gongge from './components/gongge'
 
   // 指令函数 -- 冒泡泡
   import cursorEffects from "@/assets/js/cursor-effects.js"
@@ -91,7 +95,8 @@
       titleBtn,
       emotion,
       kechengbiao,
-      teachers
+      teachers,
+      gongge
     },
     data: function () {
       return {
@@ -99,7 +104,7 @@
         icon1: require('@/assets/images/logo.png'),
         icon1Text: '老师介绍',
         icon2Text: '课程表',
-
+        icon3Text: '抽奖',
         isRunning: false,
 
 
@@ -141,6 +146,11 @@
         self.isShow = !self.isShow
         self.popContent = 'kechengbiao'
 
+      },
+      choujiang(){
+        let self = this;
+        self.isShow = !self.isShow
+        self.popContent = 'gongge'
       },
       sendRequest1() {
         //获取轮播图数据
@@ -204,7 +214,8 @@
         var self = this;
         self.showMaskpop = !self.showMaskpop
         self.popImgUrl = url
-      }
+      },
+
 
     },
     directives: {

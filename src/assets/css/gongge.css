@@ -1,0 +1,33 @@
+@charset "utf-8";
+.lotteryBox{width: 540px; height: 540px;}
+.lottery{width:100%; height:100%;position: relative;}
+.lottery > div{
+	position: absolute;
+	width: 176px; height: 176px;
+	box-sizing:border-box;
+	border: 2px solid #e50f7b;
+	text-align:center;
+	vertical-align:middle;
+	font-size: 40px;
+	color:#fff;
+}
+.lottery > div >img{width:100%;height: 100%;position: absolute;left:0;top:0;z-index:-1;}
+.lottery > div:nth-child(1){left:0;top:0}
+.lottery > div:nth-child(2){left:180px;top:0;}
+.lottery > div:nth-child(3){left:360px;top:0;}
+
+.lottery > div:nth-child(4){left:360px;top:180px}
+.lottery > div:nth-child(5){left:360px;top:360px;}
+
+.lottery > div:nth-child(6){left:180px;top:360px;}
+.lottery > div:nth-child(7){left:0px;top:360px;}
+.lottery > div:nth-child(8){left:0px;top:180px;}
+
+.lottery  > div.active{background-color: #ffc0e0;}
+
+#lotStartBtn{position: absolute; top: 180px; left: 180px;width: 180px; height: 180px;}
+#lotStartBtn>img{display: block;width:100%;height: 100%;cursor: pointer;}
+
+a{position: absolute;top:90px;left:90px;font-size: 100px;}
+
+.stop{position: absolute;left: -50px; top:0;width:50px;height: 50px;background-color: pink;cursor: pointer;}
