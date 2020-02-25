@@ -1,14 +1,11 @@
 var gonggeIndex = 0;
-var gonggeTimer = null
-var downTimer = null;
-var upTimer = null;
 
 export default class Gongge{
     constructor(options = {}){
         Object.assign(this,{
             waiting: 8000,//匀速转动时长
             index : 0, //初始位置
-            target : '',//中奖位置
+            target : 0,//中奖位置
             onEnd:function(){},
             
         },options)
@@ -34,11 +31,11 @@ export default class Gongge{
         this.downMax = 500;   //减速上限
         this.isRunning = false;//当前是否正在抽奖
         
-        this.Timer = null;
 
-        gonggeTimer = null
-        downTimer = null;
-        upTimer = null;
+        this.Timer = null;
+        this.gonggeTimer = null
+        this.downTimer = null;
+        this.upTimer = null;
                 
     }
     _index(){
@@ -79,10 +76,9 @@ export default class Gongge{
         this.aChild[this._index()].classList.remove('active');
         ++ gonggeIndex;
         this.aChild[this._index()].classList.add('active');
-        // console.log(this._index())
-        clearTimeout(gonggeTimer)
-        gonggeTimer = setTimeout(function(){self._roll();}, self.speed);
-        console.log(gonggeTimer)
+        clearTimeout(this.gonggeTimer)
+        this.gonggeTimer = setTimeout(function(){self._roll();}, self.speed);
+   
         //是否在抽奖
         if(!this.isRunning){
             this._up();
@@ -92,21 +88,19 @@ export default class Gongge{
     _up(){// 转盘加速
         // console.log('opop'+this.speed)
         let self = this
-        if(self.speed <= self.upMax) {
+        if(this.speed <= this.upMax) {
             // console.log('+'+speed) speed :50 到这一步
-            self._constant();
+            this._constant();
         }else{
             // speed == 500
             // console.log('-'+speed)
-            self.speed -= self.upStep;
-            clearTimeout(upTimer)
-            upTimer = setTimeout(function(){self._up();}, self.speed);
-            console.log(0)
+            this.speed -= this.upStep;
+            this.upTimer = setTimeout(function(){self._up();}, self.speed);
+
         }
     }
     _constant(){// 转盘匀速
         let self = this
-        clearTimeout(upTimer);
         // 均匀 options.waiting 的时间
         setTimeout(function(){ self._down();}, self.waiting);
     }
@@ -117,20 +111,16 @@ export default class Gongge{
             // 转盘减速
             let self = this
             this.speed += this.downStep;
-            downTimer = setTimeout(function(){ self._down();},self.speed);
+            this.downTimer = setTimeout(function(){ self._down();},self.speed);
         }
     }
     _stop(){// 转盘停止，还原设置
         let self = this
         console.log('停止-------------------')
 
-        console.log(downTimer)
-        console.log(gonggeTimer)
-        console.log(upTimer)
-
-        clearInterval(downTimer);
-        clearInterval(gonggeTimer);
-        clearInterval(upTimer);
+        clearTimeout(this.downTimer);
+        clearTimeout(this.gonggeTimer);
+        clearTimeout(this.upTimer);
 
         self.speed = this.initSpeed;
         self.isRunning = false;

@@ -20,7 +20,9 @@ export default {
     name: 'gongge',
     data(){
         return {
-            target : ''
+            target : '',
+            disable : '' ,
+            fnObj : {},//函数初始化对象
         }
     },
     mounted(){
@@ -29,16 +31,15 @@ export default {
     methods:{
         zhuangObj(){
             let self = this
-            return new gongge({
-                    obj: self.$refs.lottery,
-                    waiting: 5000, //匀速转动时长
-                    target :self.target,
-                    onEnd:function(){
-                        console.log('结束');
-                        self.disable = "";
-                    }
+            self.fnObj =  new gongge({
+                        obj: self.$refs.lottery,
+                        waiting: 5000, //匀速转动时长
+                        onEnd:function(){
+                            console.log('结束');
+                            self.disable = "";
+                        }
 
-            })
+                    })
 
         },
         quanzhuang(){
@@ -51,13 +52,15 @@ export default {
 
             //ajax里 获取中奖 下标
             setTimeout(function(){
-                self.target = 2;
-                self.zhuangObj()._start();
+                Object.assign(self.fnObj,{
+                    target : 3
+                })
+                self.fnObj._start();
             } , 100);
         },
         stop(){
             let self = this
-            self.zhuangObj()._stop();
+            self.fnObj._stop();
         }
     }
 }
