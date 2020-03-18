@@ -3,13 +3,19 @@
     <img src="@/assets/images/bg.jpg" alt="" class="imgbg">
     <div class="appSection">
       <!-- head -->
-      <div class="titleAll">
+      <div class="titleAll" :class="{colorR:NUmArray.indexOf(1) >= 0}">
         <!-- 点击老师介绍 -->
-        <title-btn @click="tTecherShow" :icon="icon1" :iconText="icon1Text"></title-btn>
+        <title-btn @click="tTecherShow" :icon="icon1" :iconText="icon1Text" ></title-btn>
         <!-- 课程表 -->
         <title-btn @click="tClassShow" :icon="icon1" :iconText="icon2Text"></title-btn>
         <!-- 抽奖 -->
         <title-btn @click="choujiang" :icon="icon1" :iconText="icon3Text"></title-btn>
+        <font-awesome-layers class="fa-lg">
+          <font-awesome-icon icon="circle" style="color: green;"/>
+          <font-awesome-icon icon="check" transform="shrink-5" style="color: white;" />
+        </font-awesome-layers>
+
+
       </div>
       <div class="mainCon">
         <div class="mianLive">
@@ -116,6 +122,8 @@
 
         popContent: '', //弹窗想要加载的组件
         isShow: false, //控制 弹窗 显示与隐藏
+
+        NUmArray:[]
       }
     },
     created: function () {
@@ -127,8 +135,18 @@
       //调用banner
       that.sendRequest1()
 
+      setTimeout(function(){
+        that.NUmArray.push(1)
+      },10000)
+
     },
     methods: {
+
+    getNUm(id){
+       this.NUmArray.some(item=>{
+         return item == id
+       })
+    },
       closePop() {
         // 弹窗开关
         let self = this;
@@ -246,5 +264,5 @@
 </script>
 
 <style>
-
+.colorR{background:green}
 </style>
